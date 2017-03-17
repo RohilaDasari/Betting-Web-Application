@@ -1,0 +1,32 @@
+.center{
+    text-align:center;
+}
+
+.display_flex{
+    display:flex;
+    flex:1;
+}
+
+.flex_row{
+   flex-direction:row; 
+}
+
+.flex_column{
+   flex-direction:column; 
+}
+
+.border_grey{
+    border: 2px solid grey;
+}
+
+.margin_10{
+    margin :10px;
+}
+
+.justify_space{
+    justify-content:space-between;
+}
+
+.color_red{
+    background-color: red;
+}

@@ -1,0 +1,108 @@
+<h2 class="center">Pool Details</h2>
+<label for="stake">Stake Price:</label>
+<select id="stake" name="stake" ng-model="selectedPool" ng-options="x for x in poolData.pool_stake.stakes"></select>
+<label for="lines">Number of Lines:</label>
+<span name="lines" id ="lines">{{final}}</span>
+<label for="ticketcost">Ticket Cost:</label>
+<span name="ticketcost" id ="ticketcost">{{selectedPool * final}}</span>
+<button ng-click="placeBet();">Place Bet</button>
+<div class="display_flex flex_row">
+    <!--Pool Info Section -->
+    <div class="border_grey margin_10">
+        <h3 class="center">Pool Information</h2>
+        <div class="display_flex flex_row justify_space">
+            <div class="margin_10">
+                <label for="name">Name:</label><br>
+                <span name="name" id ="name">{{ poolData.pool_info.name}}</span>
+            </div>
+            <div class="margin_10">
+                <label for="currency">Currency:</label><br>
+                <span name="currency" id ="currency">{{ poolData.pool_info.currency}}</span>
+            </div>
+            <div class="margin_10">
+                <label for="has_offers">Has offers:</label><br>
+                <span name="has_offers" id ="has_offers">{{ poolData.pool_info.has_offers}}</span>
+            </div>
+            <div class="margin_10">
+                <label for="headline_prize">Headline Prize:</label><br>
+                <span name="headline_prize" id ="headline_prize">{{ poolData.pool_info.headline_prize}}</span>
+            </div>
+            <div class="margin_10">
+                <label for="in_rollback_mode">In Rollback Mode:</label><br>
+                <span name="in_rollback_mode" id ="in_rollback_mode">{{ poolData.pool_info.in_rollback_mode}}</span>
+            </div>
+        </div>
+        <div class="display_flex flex_row">
+            <div class="margin_10">
+                <label for="num_units">Number Of Units:</label><br>
+                <span name="num_units" id ="num_units">{{ poolData.pool_info.num_units}}</span>
+            </div>
+            <div class="margin_10">
+                <label for="sched_next">Scheduled Next Date:</label><br>
+                <span name="sched_next" id ="sched_next">{{ poolData.pool_info.sched_next}}</span>
+            </div>
+            <div class="margin_10">
+                <label for="sched_start">Scheduled Start Date:</label><br>
+                <span name="sched_start" id ="sched_start">{{ poolData.pool_info.sched_start}}</span>
+            </div>
+            <div class="margin_10">
+                <label for="settlement_status">Settlement Status:</label><br>
+                <span name="settlement_status" id ="settlement_status">{{ poolData.pool_info.settlement_status}}</span>
+            </div>
+            <div class="margin_10">
+                <label for="sport_code">Sport Code:</label><br>
+                <span name="sport_code" id ="sport_code">{{ poolData.pool_info.sport_code}}</span>
+            </div>
+        </div>
+        <div class="display_flex flex_row">
+            <div class="margin_10">
+                <label for="status">Status:</label><br>
+                <span name="status" id ="status">{{ poolData.pool_info.status}}</span>
+            </div>
+            <div class="margin_10">
+                <label for="type_code">Type Code:</label><br>
+                <span name="type_code" id ="type_code">{{ poolData.pool_info.type_code}}</span>
+            </div>
+        </div>
+        <div>
+            <h4 class="center">Prizes</h4>
+            <div ng-repeat="prize in poolData.pool_info.prizes" class="display_flex flex_row">
+                <div class="margin_10">
+                    <label for="prize_type_code">Prize Type Code:</label><br>
+                    <span name="prize_type_code" id ="prize_type_code">{{prize.prize_type_code}}</span>
+                </div>
+                <div class="margin_10">
+                    <label for="amount">Amount:</label><br>
+                    <span name="amount" id ="amount">{{prize.amount}}</span>
+                </div>
+                <div class="margin_10">
+                    <label for="carry_in">Carry in:</label><br>
+                    <span name="carry_in" id ="carry_in">{{prize.carry_in}}</span>
+                </div>
+                <div class="margin_10">
+                    <label for="guarantee">Guarantee:</label><br>
+                    <span name="guarantee" id ="guarantee">{{prize.guarantee}}</span>
+                </div>
+                <div class="margin_10">
+                    <label for="pay_out">Pay Out:</label><br>
+                    <span name="pay_out" id ="pay_out">{{prize.pay_out}}</span>
+                </div>
+                <div class="margin_10">
+                    <label for="win_units">Win Units:</label><br>
+                    <span name="win_units" id ="win_units">{{prize.win_units}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Pool Info Section -->
+    <!--Pool Legs Section -->
+    <div class="border_grey margin_10">
+        <h3 class="center">Legs Selection</h2>
+        <div ng-repeat="leg in poolData.legs | orderBy:'display_order'" class="display_flex flex_row margin_10">
+            <div ng-repeat="selection in leg.selections | orderBy:'display_order'" class="display_flex flex_row">
+                <button ng-click="toggleSelection(selection,leg);" ng-class="{color_red: selection.selected}">{{selection.name}}</button>
+            </div>
+        </div>
+    </div>
+    <!--Pool Legs Section -->
+</div>

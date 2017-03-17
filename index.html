@@ -1,0 +1,37 @@
+<html>
+    <head>
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.10/angular.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="app.css">
+        <script src="app.js"></script>
+    </head>
+    <body ng-app='app'>
+        <div ng-controller="Controller as ctrl">
+            <h1 class="center">COLOSSUSBETS</h1>
+            <!--Group Section-->
+            <div>
+                <label for="group">Select the group:</label>
+                <select id="group" name="group" ng-model="selectedGroup" ng-options="group.display_group_name for group in groups | orderBy:'display_group_order'" ng-change="groupChange(selectedGroup)"></select>
+            </div>
+            <!--Group Section-->
+            <br/>
+            <!-- Sub Group Section-->
+            <div ng-if="selectedGroup.groups.length > 0">
+                <label for="subGroup">Select the sub group:</label>
+                <select id="subGroup" name="subGroup" ng-model="selectedSubGroup" ng-options="group.display_group_name for group in selectedGroup.groups | orderBy:'display_group_order'" ng-change="groupChange(selectedSubGroup)"></select>
+            </div>
+            <!-- Sub Group Section-->
+            <br/>
+            <!-- Pool Section-->
+            <div ng-if="pools.length > 0">
+                <!-- Pool Selection Section-->
+                    <label for="pools">List of Available Pools:</label>
+                    <select id="pools" name="pools" ng-model="selectedPool" ng-options="pool.name for pool in pools" ng-change="poolChange(selectedPool)"></select>
+                <!-- Pool Selection Section-->
+                <br/>
+                <!-- Pool Detail Section-->
+                <pool-detail ng-if="poolDetailSection" pool-data="poolData"></pool-detail>
+                <!-- Pool Detail Section-->
+            </div>
+        </div>
+    </body>
+</html>
